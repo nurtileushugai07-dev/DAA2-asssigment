@@ -80,4 +80,13 @@ class MinHeapTest {
 
         assertTrue(heap.isEmpty());
     }
+
+    @Test
+    void testDuplicates() {
+        heap.insert(5); heap.insert(5); heap.insert(5);
+        assertEquals(5, heap.extractMin());
+        assertEquals(5, heap.extractMin());
+        assertEquals(5, heap.extractMin());
+        assertTrue(heap.isEmpty());
+    }
 }
