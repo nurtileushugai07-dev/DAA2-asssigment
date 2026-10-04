@@ -37,11 +37,10 @@ public class DynamicArray {
         if (size == data.length) {
             resize();
         }
-        // Сдвиг элементов вправо (чтение предыдущего и запись в следующий)
         for (int i = size; i > index; i--) {
             data[i] = data[i - 1];
-            counter.addStep(); // чтение data[i-1]
-            counter.addMove(); // перенос элемента
+            counter.addStep();
+            counter.addMove();
         }
         data[index] = x;
         size++;
@@ -51,14 +50,13 @@ public class DynamicArray {
         checkIndex(index);
         int removed = data[index];
 
-        // Сдвиг элементов влево
         for (int i = index; i < size - 1; i++) {
             data[i] = data[i + 1];
-            counter.addStep(); // чтение data[i+1]
-            counter.addMove(); // перенос элемента
+            counter.addStep();
+            counter.addMove();
         }
         size--;
-        data[size] = 0; // обнуляем освободившуюся ячейку
+        data[size] = 0;
         return removed;
     }
 
@@ -84,8 +82,8 @@ public class DynamicArray {
         int[] newData = new int[newCapacity];
         for (int i = 0; i < size; i++) {
             newData[i] = data[i];
-            counter.addStep(); // чтение старого массива
-            counter.addMove(); // перенос в новый массив
+            counter.addStep();
+            counter.addMove();
         }
         data = newData;
     }
