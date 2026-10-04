@@ -94,12 +94,36 @@ class DynamicArrayTest {
             assertEquals(reference.get(i), dynamicArray.get(i));
         }
 
-        // Удаление случайных элементов
         for (int i = 0; i < 50; i++) {
             int idx = random.nextInt(reference.size());
             assertEquals(reference.remove(idx), dynamicArray.remove(idx));
         }
 
         assertEquals(reference.size(), dynamicArray.size());
+
+    }
+    @Test
+    void testFirstAndLastIndex() {
+        dynamicArray.add(1);
+        dynamicArray.add(2);
+        dynamicArray.add(0, 0);      // вставка в начало: [0,1,2]
+        dynamicArray.add(3, 3);      // вставка в конец:  [0,1,2,3]
+        assertEquals(0, dynamicArray.get(0));
+        assertEquals(3, dynamicArray.get(3));
+        assertEquals(0, dynamicArray.remove(0));
+        assertEquals(3, dynamicArray.remove(2));
+        assertEquals(2, dynamicArray.size());
+    }
+
+    @Test
+    void testCounters() {
+        dynamicArray.add(1);
+        dynamicArray.add(2);
+        counter.reset();
+        dynamicArray.add(0, 9);
+        assertEquals(4, counter.getMoves());
+        counter.reset();
+        dynamicArray.get(1);
+        assertEquals(1, counter.getSteps());
     }
 }
